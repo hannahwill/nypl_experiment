@@ -1,0 +1,27 @@
+// 1726 map attribution
+var attribution_1726 = 'Map image from <a href="http://www.bl.uk">British Library</a>';
+
+// 1726 tile set with attribution
+var paris_1726 = L.tileLayer(  'http://mapwarper.net/maps/tile/12313/{z}/{x}/{y}.png' , { attribution: attribution_1726 } );
+
+// 2014 tile set attribution
+var attribution_2014 = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Imagery © <a href="http://mapbox.com">Mapbox</a>';
+
+// 2014 tile set using MapBox ID (replace with your own)
+var paris_2014 = L.tileLayer( 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png',{id: 'examples.map-20v6611k',attribution: attribution_2014});
+
+
+// create the map with the default the tileset
+var map = L.map('map', {layers:paris_1726});
+
+// create a variable to hold all tile sets and name them so we can use it for the toggler
+var baseMaps = {
+  "Paris 2014": paris_2014,
+  "Paris 1726": paris_1726
+};
+
+// add the tile set switcher control
+L.control.layers(baseMaps).addTo(map);
+
+// zoom and center in downtown Paris
+map.setView([48.860509, 2.338792],14);
